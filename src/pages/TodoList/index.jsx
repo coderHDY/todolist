@@ -87,7 +87,6 @@ export default function TodoList() {
               <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
                 <AddIcon />
               </Fab>
-
               <SwipeableDrawer
                 anchor="bottom"
                 open={showAdd}
