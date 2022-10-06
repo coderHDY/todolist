@@ -13,7 +13,6 @@ import {
   ListItem,
   IconButton,
   ListItemText,
-  Skeleton,
   Fab,
   SwipeableDrawer,
   TextField,
@@ -25,23 +24,6 @@ import useList from '../../hooks/useList';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
-const LoadingFrame = (
-  <>
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', margin: "1rem 0" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="rectangular" width={210} height={60} />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="rounded" width={210} height={60} />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="rounded" width={210} height={60} />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="text" />
-    <Skeleton animation="wave" sx={{ fontSize: '1rem', marginBottom: "1rem" }} variant="rounded" width={210} height={60} />
-  </>
-)
 
 export default function TodoList() {
   const { list, add, del } = useList();
