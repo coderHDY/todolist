@@ -1,0 +1,12 @@
+.container {
+  background-color: var(--gray-bgc);
+  height: calc(100vh - 56px) !important;
+  overflow: scroll;
+}
+.fabIcon {
+  position: fixed !important;
+  right: 1rem !important;
+  bottom: 5rem !important;
+  width: 3rem !important;
+  height: 3rem !important;
+}
