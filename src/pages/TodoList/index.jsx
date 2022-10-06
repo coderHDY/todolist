@@ -78,7 +78,7 @@ export default function TodoList() {
                     >
                       <ListItemText
                         primary={item.val}
-                        secondary={item.deadline && `截止日期: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
+                        secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
                       />
                     </ListItem>
                   )
