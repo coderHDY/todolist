@@ -45,7 +45,6 @@ const LoadingFrame = (
 
 export default function TodoList() {
   const { list, add, del } = useList();
-  const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
   const [name, setName] = useState("");
   const [deadline, setDeadline] = useState(new Date());
@@ -54,68 +53,57 @@ export default function TodoList() {
     add(name, +deadline > +new Date() ? +deadline : "");
     setShowAdd(false);
   }
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
   return (
     <Container className={styles.container}>
-      {
-        loading
-          ? (LoadingFrame)
-          : (
-            <>
-              <List dense>
-                {
-                  list.map(item => (
-                    <ListItem
-                      key={item.id}
-                      divider
-                      secondaryAction={
-                        <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
-                          <DeleteIcon color='error' />
-                        </IconButton>
-                      }
-                    >
-                      <ListItemText
-                        primary={item.val}
-                        secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
-                      />
-                    </ListItem>
-                  )
-                  )}
-              </List>
-              <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
-                <AddIcon />
-              </Fab>
-              <SwipeableDrawer
-                anchor="bottom"
-                open={showAdd}
-                onClose={() => setShowAdd(false)}
-                onOpen={() => setShowAdd(true)}
-              >
-                <List dense>
-                  <Stack spacing={3} padding={2}>
-
-                    <TextField label="事件" variant="standard" fullWidth value={name} onChange={e => setName(e.target.value)} />
-                    <LocalizationProvider adapterLocale={bgLocale} dateAdapter={AdapterDayjs}>
-                      <DateTimePicker
-                        displayStaticWrapperAs="mobile"
-                        label="截止日期"
-                        value={deadline}
-                        onChange={handleDateChange}
-                        renderInput={(params) => <TextField {...params} />}
-                      />
-                    </LocalizationProvider>
-                    <Button variant="contained" color="success" onClick={addList}>
-                      <AddIcon />
-                      <span>添加</span>
-                    </Button>
-                  </Stack>
-                </List>
-              </SwipeableDrawer>
-            </>
+      <List dense>
+        {
+          list.map(item => (
+            <ListItem
+              key={item.id}
+              divider
+              secondaryAction={
+                <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
+                  <DeleteIcon color='error' />
+                </IconButton>
+              }
+            >
+              <ListItemText
+                primary={item.val}
+                secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
+              />
+            </ListItem>
           )
-      }
+          )}
+      </List>
+      <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
+        <AddIcon />
+      </Fab>
+      <SwipeableDrawer
+        anchor="bottom"
+        open={showAdd}
+        onClose={() => setShowAdd(false)}
+        onOpen={() => setShowAdd(true)}
+      >
+        <List dense>
+          <Stack spacing={3} padding={2}>
+
+            <TextField label="事件" variant="standard" fullWidth value={name} onChange={e => setName(e.target.value)} />
+            <LocalizationProvider adapterLocale={bgLocale} dateAdapter={AdapterDayjs}>
+              <DateTimePicker
+                displayStaticWrapperAs="mobile"
+                label="截止日期"
+                value={deadline}
+                onChange={handleDateChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+            <Button variant="contained" color="success" onClick={addList}>
+              <AddIcon />
+              <span>添加</span>
+            </Button>
+          </Stack>
+        </List>
+      </SwipeableDrawer>
     </Container>
   )
 }
