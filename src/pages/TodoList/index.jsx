@@ -44,7 +44,7 @@ const LoadingFrame = (
 )
 
 export default function TodoList() {
-  const { list, add, del, modify, done } = useList();
+  const { list, add, del } = useList();
   const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
   const [name, setName] = useState("");
