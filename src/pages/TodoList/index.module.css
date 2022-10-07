@@ -1,6 +1,12 @@
+body {
+  background-image: var(--bg-img);
+}
 .container {
-  background-color: var(--gray-bgc);
   height: calc(100vh - 56px) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 37px;
+  background-color: var(--gray-bgc);
   background-image: var(--bg-img);
   background-size: cover;
   overflow: scroll;
@@ -11,4 +17,8 @@
   bottom: 5rem !important;
   width: 3rem !important;
   height: 3rem !important;
+}
+.bottomDrawer :global(.MuiPaper-root) {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }

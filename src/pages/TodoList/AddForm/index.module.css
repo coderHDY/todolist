@@ -1,0 +1,14 @@
+.jump {
+  animation: bottomDrawer .3s linear 0s forwards alternate-reverse;
+}
+@keyframes bottomDrawer {
+  0% {
+    padding-bottom: 0rem;
+  }
+  70% {
+    padding-bottom: 2rem;
+  }
+  100% {
+    padding-bottom: 0rem;
+  }
+}

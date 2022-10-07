@@ -1,0 +1,13 @@
+.text span{
+  color: rgb(0, 0, 0, 0.6);
+  font-size: 2rem;
+  letter-spacing: .3rem !important;
+  font-weight: 900;
+}
+.text p {
+  color: rgba(85, 85, 85, 0.6);
+  font-weight: 700;
+}
+.item {
+  background-color: rgba(255, 255, 255, 0.2);
+}

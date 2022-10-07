@@ -11,6 +11,7 @@ const useList = () => {
     Storage.set(LIST, newList);
   }
   const add = (str, deadline = "") => {
+    if (str.trim() === "") return;
     const newItem = {
       id: v4(),
       val: str,
