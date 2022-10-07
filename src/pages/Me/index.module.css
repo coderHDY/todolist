@@ -1,4 +1,6 @@
 .container {
   background-color: var(--gray-bgc);
   height: calc(100vh - 56px) !important;
+  background-image: var(--bg-img);
+  padding-top: 44px;
 }
