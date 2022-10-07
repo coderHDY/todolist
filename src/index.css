@@ -1,5 +1,6 @@
 :root {
     --gray-bgc: rgb(240, 240, 240);
+    --bg-img: url("https://bing.img.run/m.php");
 }
 body {
     margin: 0;
