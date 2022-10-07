@@ -1,4 +1,7 @@
-.text span{
+.text {
+  margin-left: 1rem;
+}
+.text span {
   color: rgb(0, 0, 0, 0.6);
   font-size: 2rem;
   letter-spacing: .3rem !important;
@@ -7,6 +10,13 @@
 .text p {
   color: rgba(85, 85, 85, 0.6);
   font-weight: 700;
+}
+.done {
+  color: rgb(198, 198, 198) !important;
+}
+.done p, .done span {
+  text-decoration: line-through;
+  color: rgb(225, 225, 225);
 }
 .item {
   background-color: rgba(255, 255, 255, 0.2);

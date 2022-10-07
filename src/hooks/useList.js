@@ -18,12 +18,27 @@ const useList = () => {
       create: +new Date(),
       deadline,
       top: -1,
-      done: 0,
+      done: false,
     }
     changeList([newItem, ...list]);
   }
-  const done = id => {
-    const newList = list.map(item => item.id === id ? { ...item, done: 1 } : item);
+  const toggleDone = id => {
+    let idx;
+    const newList = list.map((item, i) => {
+      if (item.id === id) {
+        idx = i;
+        const newItem = { ...item, done: !item.done }
+        return newItem;
+      } else {
+        return item;
+      }
+    });
+    const [item] = newList.splice(idx, 1);
+    if (item.done) {
+      newList.push(item);
+    } else {
+      newList.unshift(item);
+    }
     changeList(newList);
   };
   const del = id => {
@@ -37,7 +52,7 @@ const useList = () => {
   return {
     list,
     add,
-    done,
+    toggleDone,
     del,
     modify,
   }

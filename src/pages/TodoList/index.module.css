@@ -2,7 +2,7 @@
   height: calc(100vh - 56px) !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: 37px;
+  padding-top: 60px;
   background-color: var(--gray-bgc);
   background-size: cover;
   overflow: scroll;

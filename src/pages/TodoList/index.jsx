@@ -12,16 +12,15 @@ import {
 import ItemList from './ItemList';
 import AddForm from './AddForm';
 import useList from '../../hooks/useList';
-import TopBar from '../../components/TopBar';
-import MenuIcon from '@mui/icons-material/Menu';
+import Bar from "./Bar";
 
 export default function TodoList() {
-  const { list, add, del } = useList();
+  const { list, add, del, toggleDone } = useList();
   const [showAdd, setShowAdd] = useState(false);
   return (
     <Container className={styles.container}>
-      <TopBar left={<MenuIcon color="primary" />} />
-      <ItemList list={list} del={del} />
+      <Bar />
+      <ItemList list={list} del={del} toggleDone={toggleDone} />
       <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
         <AddIcon />
       </Fab>
