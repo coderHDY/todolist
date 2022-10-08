@@ -3,8 +3,8 @@
 }
 .text span {
   color: rgb(0, 0, 0, 0.6);
-  font-size: 2rem;
-  letter-spacing: .3rem !important;
+  font-size: 1.7rem;
+  letter-spacing: .1rem !important;
   font-weight: 900;
 }
 .text p {
