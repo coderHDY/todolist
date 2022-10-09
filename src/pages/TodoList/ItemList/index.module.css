@@ -26,3 +26,17 @@
   padding-left: .5rem !important;
   user-select: none;
 }
+.active {
+  animation: enter .4s linear 0s forwards;
+}
+@keyframes enter {
+  0% {
+    transform: scale(.7);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

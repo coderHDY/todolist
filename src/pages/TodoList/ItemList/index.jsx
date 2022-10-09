@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from "./index.module.css";
 import {
   List,
@@ -14,8 +14,18 @@ import {
 import dayjs from "dayjs";
 
 export default function ItemList({ list, del, toggleDone }) {
+  const ul = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        e.target.classList.add(styles.active);
+        observer.unobserve(e.target);
+      }
+    })
+    Array.prototype.forEach.call(ul.current.children, (item, idx) => setTimeout(() => observer.observe(item), idx * 40));
+  }, []);
   return (
-    <List dense>
+    <List dense ref={ul}>
       {
         list.map(item => (
           <ListItem
