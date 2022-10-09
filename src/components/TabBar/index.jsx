@@ -24,7 +24,7 @@ export default function TabBar() {
     const nav = useNavigate();
     const handleRouterClick = (item) => {
         setActive(item.link);
-        nav(item.link);
+        nav(item.link, {replace: true});
     }
     return (
         <BottomNavigation
