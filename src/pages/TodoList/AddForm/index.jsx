@@ -25,7 +25,7 @@ export default function AddForm({ add, showAdd, setShowAdd }) {
     setShowAdd(false);
   }
   return (
-    <List dense className={showAdd && styles.jump}>
+    <List dense className={showAdd ? styles.jump : ""}>
       <Stack spacing={3} padding={2}>
 
         <TextField label="事件" variant="standard" fullWidth value={name} onChange={e => setName(e.target.value)} />
