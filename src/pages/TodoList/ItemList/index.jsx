@@ -23,8 +23,8 @@ export default function ItemList({ list, del, toggleDone }) {
   }, []);
   const copy = (val) => () => {
     navigator.clipboard.writeText(val);
-    // setShowTip(true);
-    // setTimeout(() => setShowTip(false), 1000);
+    setShowTip(true);
+    setTimeout(() => setShowTip(false), 1000);
     // let textArea = document.createElement("textarea");
     // textArea.value = val;
     // // 使text area不在viewport，同时设置不可见
