@@ -12,8 +12,8 @@
   position: fixed !important;
   right: 1rem !important;
   bottom: 5rem !important;
-  width: 3rem !important;
-  height: 3rem !important;
+  width: 4rem !important;
+  height: 4rem !important;
 }
 .bottomDrawer :global(.MuiPaper-root) {
   border-top-left-radius: 1rem;
