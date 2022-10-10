@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from "./index.module.css";
 import {
   List,
@@ -6,8 +6,8 @@ import {
   IconButton,
   ListItemText,
   Checkbox,
-  // Snackbar,
-  // Alert,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 
 import {
@@ -17,10 +17,30 @@ import dayjs from "dayjs";
 
 export default function ItemList({ list, del, toggleDone }) {
   const ul = useRef();
-  // const [showTip, setShowTip] = useState(false);
+  const [showTip, setShowTip] = useState(false);
   useEffect(() => {
     Array.prototype.forEach.call(ul.current.children, (item, idx) => setTimeout(() => item.classList.add(styles.active), idx * 40));
   }, []);
+  const copy = (val) => () => {
+    navigator.clipboard.writeText(val);
+    // setShowTip(true);
+    // setTimeout(() => setShowTip(false), 1000);
+    // let textArea = document.createElement("textarea");
+    // textArea.value = val;
+    // // 使text area不在viewport，同时设置不可见
+    // textArea.style.position = "fixed";
+    // textArea.style.opacity = 0;
+    // textArea.style.left = "-999999px";
+    // textArea.style.top = "-999999px";
+    // document.body.appendChild(textArea);
+    // textArea.focus();
+    // textArea.select();
+    // return new Promise((res, rej) => {
+    //   // 执行复制命令并移除文本框
+    //   document.execCommand('copy') ? res() : rej();
+    //   textArea.remove();
+    // });
+  }
   return (
     <>
       <List dense ref={ul} className={styles.list}>
@@ -29,6 +49,7 @@ export default function ItemList({ list, del, toggleDone }) {
             <ListItem
               key={item.id}
               divider
+              onClick={copy(item.val)}
               secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
                   <DeleteIcon color='error' />
@@ -46,12 +67,12 @@ export default function ItemList({ list, del, toggleDone }) {
           )
           )}
       </List>
-      {/* <Snackbar
+      <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={showTip}
       >
         <Alert severity="success">复制成功</Alert>
-      </Snackbar> */}
+      </Snackbar>
     </>
   )
 }
