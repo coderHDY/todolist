@@ -23,20 +23,22 @@ export default function ItemList({ list, del, toggleDone }) {
   }, []);
   const copy = (val) => () => {
     if (!navigator.clipboard) return;
+    const start = new Date();
     const timeout = setTimeout(() => {
       setShowTip(true);
       setTimeout(() => setShowTip(false), 1000);
     }, 700);
     const touchEnd = () => {
-      // todo 倒计时
+      clearTimeout(timeout);
+      window.removeEventListener('touchend', touchEnd);
+      if (+new Date() - start < 700) return;
       console.log(val);
       try {
         navigator.clipboard.writeText(val);
       } catch (e) {
+        console.warn("不允许");
         console.warn(e);
       }
-      clearTimeout(timeout);
-      window.removeEventListener('touchend', touchEnd);
     }
     window.addEventListener('touchend', touchEnd);
   }
