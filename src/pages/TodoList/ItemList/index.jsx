@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from "./index.module.css";
 import {
   List,
@@ -6,8 +6,8 @@ import {
   IconButton,
   ListItemText,
   Checkbox,
-  Snackbar,
-  Alert,
+  // Snackbar,
+  // Alert,
 } from '@mui/material';
 
 import {
@@ -17,28 +17,10 @@ import dayjs from "dayjs";
 
 export default function ItemList({ list, del, toggleDone }) {
   const ul = useRef();
-  const [showTip, setShowTip] = useState(false);
+  // const [showTip, setShowTip] = useState(false);
   useEffect(() => {
     Array.prototype.forEach.call(ul.current.children, (item, idx) => setTimeout(() => item.classList.add(styles.active), idx * 40));
   }, []);
-  const copy = (val) => () => {
-    if (!navigator.clipboard) return;
-    const timeout = setTimeout(() => {
-      setShowTip(true);
-      setTimeout(() => setShowTip(false), 1000);
-    }, 700);
-    const touchEnd = async () => {
-      try {
-        await navigator.clipboard.writeText(val);
-      } catch (e) {
-        console.warn("不允许");
-        console.warn(e);
-      }
-      clearTimeout(timeout);
-      window.removeEventListener('touchend', touchEnd);
-    }
-    window.addEventListener('touchend', touchEnd);
-  }
   return (
     <>
       <List dense ref={ul} className={styles.list}>
@@ -46,7 +28,6 @@ export default function ItemList({ list, del, toggleDone }) {
           list.map(item => (
             <ListItem
               key={item.id}
-              onTouchStart={copy(item.val)}
               divider
               secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
@@ -65,12 +46,12 @@ export default function ItemList({ list, del, toggleDone }) {
           )
           )}
       </List>
-      <Snackbar
+      {/* <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={showTip}
       >
         <Alert severity="success">复制成功</Alert>
-      </Snackbar>
+      </Snackbar> */}
     </>
   )
 }
