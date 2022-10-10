@@ -28,10 +28,14 @@ export default function ItemList({ list, del, toggleDone }) {
       setTimeout(() => setShowTip(false), 1000);
     }, 700);
     const touchEnd = () => {
-      clearTimeout(timeout);
       // todo 倒计时
       console.log(val);
-      navigator.clipboard.writeText(val);
+      try {
+        navigator.clipboard.writeText(val);
+      } catch (e) {
+        console.warn(e);
+      }
+      clearTimeout(timeout);
       window.removeEventListener('touchend', touchEnd);
     }
     window.addEventListener('touchend', touchEnd);
