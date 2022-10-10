@@ -24,12 +24,13 @@ export default function ItemList({ list, del, toggleDone }) {
   const copy = (val) => () => {
     if (!navigator.clipboard) return;
     const timeout = setTimeout(() => {
-      navigator.clipboard.writeText(val);
       setShowTip(true);
       setTimeout(() => setShowTip(false), 1000);
     }, 700);
     const touchEnd = () => {
       clearTimeout(timeout);
+      // todo 倒计时
+      navigator.clipboard.writeText(val);
       window.removeEventListener('touchend', touchEnd);
     }
     window.addEventListener('touchend', touchEnd);
