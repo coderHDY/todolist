@@ -25,7 +25,7 @@ export default function ItemList({ list, del, toggleDone }) {
     Array.prototype.forEach.call(ul.current.children, (item, idx) => setTimeout(() => observer.observe(item), idx * 40));
   }, []);
   return (
-    <List dense ref={ul}>
+    <List dense ref={ul} className={styles.list}>
       {
         list.map(item => (
           <ListItem

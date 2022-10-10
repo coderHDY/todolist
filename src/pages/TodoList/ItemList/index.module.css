@@ -1,3 +1,7 @@
+.list {
+  width: 100vw;
+  overflow: hidden;
+}
 .text {
   margin-left: 1rem;
 }
