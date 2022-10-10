@@ -30,6 +30,7 @@ export default function ItemList({ list, del, toggleDone }) {
     const touchEnd = () => {
       clearTimeout(timeout);
       // todo 倒计时
+      console.log(val);
       navigator.clipboard.writeText(val);
       window.removeEventListener('touchend', touchEnd);
     }
