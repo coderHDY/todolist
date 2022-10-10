@@ -10,11 +10,12 @@
   font-size: 1.5rem;
   letter-spacing: .05rem !important;
   font-weight: 900;
-  user-select: all;
+  user-select: none;
 }
 .text p {
   color: rgba(85, 85, 85, 0.6);
   font-weight: 700;
+  user-select: none;
 }
 .done {
   color: rgb(198, 198, 198) !important;
