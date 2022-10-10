@@ -4,12 +4,39 @@ import {
   AppBar,
   Toolbar,
   Box,
+  SpeedDialIcon,
+  SpeedDialAction,
+  SpeedDial,
 } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import ReplayIcon from '@mui/icons-material/Replay';
+
+const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
+  position: 'absolute',
+  '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+    bottom: theme.spacing(-3),
+    right: theme.spacing(-3.2),
+    transform: "scale(.9)",
+  },
+  '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+    top: "-25px",
+    left: theme.spacing(-3.2),
+    transform: "scale(.9)",
+  },
+  '& button': {
+    boxShadow: "none !important",
+    backgroundColor: "#1876D1",
+    color: "#ffffff",
+  },
+}));
+
 
 const Index = () => {
+  const actions = [
+    { icon: <ReplayIcon />, name: 'Reload', onClick: () => window.location.reload() },
+  ];
   return (
     <AppBar position="fixed" color="primary" sx={{ top: 0 }}>
       <Toolbar>
@@ -18,7 +45,20 @@ const Index = () => {
         </IconButton>
         <Box sx={{ flexGrow: 1 }} />
         <IconButton color="inherit">
-          <MoreIcon />
+          <StyledSpeedDial
+            ariaLabel="SpeedDial playground example"
+            icon={<SpeedDialIcon />}
+            direction="down"
+          >
+            {actions.map((action) => (
+              <SpeedDialAction
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={action.onClick}
+              />
+            ))}
+          </StyledSpeedDial>
         </IconButton>
       </Toolbar>
     </AppBar>
