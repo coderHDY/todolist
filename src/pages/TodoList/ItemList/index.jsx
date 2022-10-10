@@ -28,17 +28,20 @@ export default function ItemList({ list, del, toggleDone }) {
       setShowTip(true);
       setTimeout(() => setShowTip(false), 1000);
     }, 700);
-    const touchEnd = () => {
+    const touchEnd = async () => {
       clearTimeout(timeout);
-      window.removeEventListener('touchend', touchEnd);
-      if (+new Date() - start < 700) return;
-      console.log(val);
+      if (+new Date() - start < 700) {
+        window.removeEventListener('touchend', touchEnd);
+        return;
+      }
+      console.log('~~~', val);
       try {
-        navigator.clipboard.writeText(val);
+        await navigator.clipboard.writeText(val);
       } catch (e) {
         console.warn("不允许");
         console.warn(e);
       }
+      window.removeEventListener('touchend', touchEnd);
     }
     window.addEventListener('touchend', touchEnd);
   }
