@@ -1,7 +1,6 @@
 import Me from '../pages/Me';
 import TodoList from '../pages/TodoList';
 import Err from '../pages/Error/index.jsx';
-import { Navigate } from "react-router-dom";
 
 
 const routerMap = [
@@ -15,7 +14,7 @@ const routerMap = [
   },
   {
     path: "/",
-    element: <Navigate to="/todolist" />,
+    element: <TodoList />,
   },
   {
     path: "*",

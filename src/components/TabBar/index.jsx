@@ -8,7 +8,7 @@ import PersonIcon from "@mui/icons-material/Person";
 
 const routes = [
   {
-    link: "/todolist",
+    link: "/",
     label: "List",
     icon: <PlaylistAddCheckIcon />,
   },
