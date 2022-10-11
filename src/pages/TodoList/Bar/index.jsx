@@ -17,12 +17,12 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: 'absolute',
   '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
     bottom: theme.spacing(-3),
-    right: theme.spacing(-3.2),
+    right: theme.spacing(-1.2),
     transform: "scale(.9)",
   },
   '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-    top: "-25px",
-    left: theme.spacing(-3.2),
+    top: "0px",
+    right: ".3rem",
     transform: "scale(.9)",
   },
   '& button': {
@@ -44,22 +44,20 @@ const Index = () => {
           <MenuIcon />
         </IconButton>
         <Box sx={{ flexGrow: 1 }} />
-        <IconButton color="inherit">
-          <StyledSpeedDial
-            ariaLabel="SpeedDial playground example"
-            icon={<SpeedDialIcon />}
-            direction="down"
-          >
-            {actions.map((action) => (
-              <SpeedDialAction
-                key={action.name}
-                icon={action.icon}
-                tooltipTitle={action.name}
-                onClick={action.onClick}
-              />
-            ))}
-          </StyledSpeedDial>
-        </IconButton>
+        <StyledSpeedDial
+          ariaLabel="SpeedDial playground example"
+          icon={<SpeedDialIcon />}
+          direction="down"
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={action.onClick}
+            />
+          ))}
+        </StyledSpeedDial>
       </Toolbar>
     </AppBar>
   );
