@@ -21,7 +21,7 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
     transform: "scale(.9)",
   },
   '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-    top: "0px",
+    top: "-5px",
     right: ".3rem",
     transform: "scale(.9)",
   },
