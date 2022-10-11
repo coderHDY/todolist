@@ -34,7 +34,6 @@ export default function ItemList({ list, del, toggleDone }) {
             <ListItem
               key={item.id}
               divider
-              onClick={copy(item.val)}
               secondaryAction={
                 <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
                   <DeleteIcon color='error' />
@@ -44,7 +43,7 @@ export default function ItemList({ list, del, toggleDone }) {
             >
               <Checkbox className={item.done ? styles.done : ""} checked={!!item.done} onChange={() => toggleDone(item.id)} />
               <ListItemText
-                primary={item.val}
+                primary={ <span onClick={copy(item.val)}>{item.val}</span> }
                 secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
                 className={styles.text}
               />
