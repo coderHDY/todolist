@@ -11,11 +11,10 @@ function App() {
   const routes = useRoutes(routerMap);
   return (
     <>
-      {
-        loading
-          ? <Loading />
-          : (routes)
-      }
+      { loading && <Loading /> }
+      <div style={{height: loading && "0px", overflow: "hidden"}}>
+        { routes }
+      </div>
       <TabBar />
     </>
   );

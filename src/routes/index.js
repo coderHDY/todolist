@@ -8,17 +8,14 @@ const routerMap = [
   {
     path: "/me",
     element: <Me />,
-    replace: true,
   },
   {
     path: "/todolist",
     element: <TodoList />,
-    replace: true,
   },
   {
     path: "/",
     element: <Navigate to="/todolist" />,
-    replace: true,
   },
   {
     path: "*",
