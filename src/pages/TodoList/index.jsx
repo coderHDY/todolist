@@ -20,7 +20,7 @@ export default function TodoList() {
   const [showAdd, setShowAdd] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
+    setTimeout(() => setLoading(false), 1000);
   }, []);
   return (
     <Container className={styles.container}>
