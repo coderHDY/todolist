@@ -5,9 +5,9 @@ const useWeather = () => {
   const [later, setLater] = useState([]);
   const weather = Storage.get("weather") || {};
   useEffect(() => {
-    if (weather && weather.date && new Date(weather.date) === new Date().getDate()) {
+    if (weather && weather.date && new Date(weather.date).toDateString() === new Date().toDateString()) {
       setToday(weather.today);
-      setToday(weather.later);
+      setLater(weather.later);
       return;
     };
     window._AMapSecurityConfig = {
@@ -16,24 +16,37 @@ const useWeather = () => {
     window.onLoad = function () {
       window.AMap.plugin('AMap.Weather', function () {
         //创建天气查询实例
-        var weatherAPI = new window.AMap.Weather();
+        let weatherAPI = new window.AMap.Weather();
+        Promise.all([
+          new Promise(res => {
+            //执行实时天气信息查询
+            weatherAPI.getLive('大连市', function (err, data) {
+              if (!err) {
+                weather.today = data;
+                setToday(data);
+              } else {
+                console.log(err);
+              }
+              res();
+            });
+          }),
+          () => {
+            new Promise(res => {
+              weatherAPI.getForecast('大连市', function (err, data) {
+                if (!err) {
+                  weather.later = data;
+                  setLater(data);
+                }
+                res();
+              });
+            })
+          }
+        ]).then(() => {
+          weather.date = +new Date();
+          Storage.set("weather", weather);
+        })
 
-        //执行实时天气信息查询
-        weatherAPI.getLive('大连市', function (err, data) {
-          if (!err) {
-            weather.today = data;
-            setToday(data);
-          } else {
-            console.log(err);
-          }
-        });
-        weatherAPI.getForecast('大连市', function (err, data) {
-          if (!err) {
-            weather.later = data;
-            setLater(data);
-            Storage.set("weather", weather);
-          }
-        });
+
       });
     }
     var url = 'https://webapi.amap.com/maps?v=1.4.15&key=46dc74aebed689e7586325ef13585c27&callback=onLoad';
