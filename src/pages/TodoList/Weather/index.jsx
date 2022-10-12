@@ -17,8 +17,8 @@ const Weather = (props) => {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent className={styles.today}>
           <Typography className={styles.todayWeather}>
-            <span className={styles.todayTemp}> {`${today.temperature ?? ""}℃`}</span>
-            <span className={styles.todayWind}> {`${today.windDirection ?? ""}风 ${today.windPower}级`}</span>
+            <span className={styles.todayTemp}> {today.temperature ? `${today.temperature}℃` : " "}</span>
+            <span className={styles.todayWind}> {today.windDirection ? `${today.windDirection}风 ${today.windPower}级` : " "}</span>
           </Typography>
           <Typography className={styles.cityInfo} variant="subtitle1" color="text.secondary" component="div">
             <span className={styles.city}>{`${today.city ?? "大连"}`}</span>
