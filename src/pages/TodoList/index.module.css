@@ -1,12 +1,16 @@
 .container {
   height: calc(100vh - 56px) !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  padding-top: 60px;
-  background-color: var(--gray-bgc);
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: calc(60px + 230px);
   background-size: cover;
   overflow-y: scroll;
+  background: linear-gradient(to bottom, #1876D1 0, #1876D1 5rem, var(--gray-bgc) 5rem);
   overflow-x: hidden;
+  transition: .4s;
+}
+.container::-webkit-scrollbar {
+  display: none
 }
 .fabIcon {
   position: fixed !important;
@@ -18,4 +22,7 @@
 .bottomDrawer :global(.MuiPaper-root) {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+}
+.container.hide {
+  padding-top: calc(60px + 3rem) !important;
 }

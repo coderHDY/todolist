@@ -32,6 +32,9 @@
   padding-left: .5rem !important;
   user-select: none;
 }
+.item:first-child {
+  padding-top: 0 !important;
+}
 .active {
   animation: enter .4s linear 0s forwards;
 }

@@ -4,7 +4,7 @@ export default class Storage {
     try {
       item = JSON.parse(localStorage.getItem(key)) || "";
     } catch (e) {
-      item = "";
+      item = null;
     }
     return item;
   }
