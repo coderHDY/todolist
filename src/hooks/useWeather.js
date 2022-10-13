@@ -30,17 +30,15 @@ const useWeather = () => {
               res();
             });
           }),
-          () => {
-            new Promise(res => {
-              weatherAPI.getForecast('大连市', function (err, data) {
-                if (!err) {
-                  weather.later = data;
-                  setLater(data);
-                }
-                res();
-              });
-            })
-          }
+          new Promise(res => {
+            weatherAPI.getForecast('大连市', function (err, data) {
+              if (!err) {
+                weather.later = data;
+                setLater(data);
+              }
+              res();
+            });
+          })
         ]).then(() => {
           weather.date = +new Date();
           Storage.set("weather", weather);

@@ -25,9 +25,15 @@
   overflow: hidden;
   transition: .4s;
 }
+.weather {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-right: .5rem;
+  transition: .4s;
+}
 .todayTemp {
   display: inline-block;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   height: 3.5rem;
   font-weight: 700;
   transition: .4s;
@@ -63,9 +69,21 @@
 .afterDate {
   font-size: .8rem;
 }
+.afterWeather {
+  display: inline-block;
+  width: 3.5rem;
+  padding-left: 1rem;
+  text-align: center;
+}
 .afterTemp {
-  font-size: 1.1rem;
-  margin-left: 1rem;
+  display: flex;
+  justify-content: space-around;
+  width: 6rem;
+  margin-left: .5rem;
+  text-align: center;
+}
+.afterTemp > span {
+  flex: 1;
 }
 /* hide */
 .container.hide {
@@ -74,9 +92,13 @@
 .hide .today {
   padding-top: .2rem;
 }
+.hide .weather {
+  font-size: 2rem;
+}
 .hide .todayTemp {
   font-size: 2rem;
 }
 .hide .todayWind {
   font-size: 1rem;
 }
+

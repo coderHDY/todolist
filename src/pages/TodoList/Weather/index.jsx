@@ -17,6 +17,7 @@ const Weather = (props) => {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent className={styles.today}>
           <Typography className={styles.todayWeather}>
+            <span className={styles.weather}> {today.weather ? `${today.weather}` : " "}</span>
             <span className={styles.todayTemp}> {today.temperature ? `${today.temperature}℃` : " "}</span>
             <span className={styles.todayWind}> {today.windDirection ? `${today.windDirection}风 ${today.windPower}级` : " "}</span>
           </Typography>
@@ -26,10 +27,16 @@ const Weather = (props) => {
           </Typography>
         </CardContent>
         <Box className={styles.after}>
-          {later.forecasts?.slice(1).map(item => (
+          {later?.forecasts?.slice(1).map(item => (
             <div className={styles.afterDay} key={item.date}>
               <div className={styles.afterDate}>{item?.date.slice(5)}</div>
-              <div className={styles.afterTemp}>{`${item?.nightTemp}℃`} - {`${item?.dayTemp}℃`}</div>
+              <div className={styles.afterWeather}>{`${item?.dayWeather}`}</div>
+              <div className={styles.afterTemp}>
+                <span>{`${item?.nightTemp}℃`}</span>
+                <span>-</span>
+                <span>{`${item?.dayTemp}℃`}</span>
+                
+              </div>
             </div>
           ))}
         </Box>
