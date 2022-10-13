@@ -85,6 +85,9 @@
 .afterTemp > span {
   flex: 1;
 }
+.afterTemp > span:not(:nth-child(2)) {
+  width: 1.5rem;
+}
 /* hide */
 .container.hide {
   height: 3rem;
