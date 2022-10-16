@@ -23,7 +23,9 @@ export default function TodoList() {
     <Container className={`${styles.container} ${hide ? styles.hide : ""}`}>
       <Bar />
       <Weather hide={hide} setHide={setHide} />
-      <ItemList list={list} del={del} toggleDone={toggleDone} />
+      <div onClick={() => setHide(true)}>
+        <ItemList list={list} del={del} toggleDone={toggleDone} />
+      </div>
       <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
         <AddIcon />
       </Fab>
