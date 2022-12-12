@@ -17,8 +17,8 @@ import Weather from './Weather';
 
 export default function TodoList() {
   const { list, add, del, toggleDone } = useList();
-  const [showAdd, setShowAdd] = useState(false);
-  const [hide, setHide] = useState(true);
+  const [ showAdd, setShowAdd ] = useState(false);
+  const [ hide, setHide ] = useState(true);
   return (
     <Container className={`${styles.container} ${hide ? styles.hide : ""}`}>
       <Bar />
