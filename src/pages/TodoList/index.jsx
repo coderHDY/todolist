@@ -15,16 +15,18 @@ import useList from '../../hooks/useList';
 import Bar from "./Bar";
 import Weather from './Weather';
 
+
 export default function TodoList() {
-  const { list, add, del, toggleDone } = useList();
-  const [ showAdd, setShowAdd ] = useState(false);
-  const [ hide, setHide ] = useState(true);
+  const { list, add, del, toggleDone, changeList } = useList();
+  const [showAdd, setShowAdd] = useState(false);
+  const [hide, setHide] = useState(true);
+
   return (
     <Container className={`${styles.container} ${hide ? styles.hide : ""}`}>
       <Bar />
       <Weather hide={hide} setHide={setHide} />
       <div onClick={() => setHide(true)} onTouchStart={() => setHide(true)}>
-        <ItemList list={list} del={del} toggleDone={toggleDone} />
+        <ItemList changeList={changeList} list={list} del={del} toggleDone={toggleDone} />
       </div>
       <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>
         <AddIcon />

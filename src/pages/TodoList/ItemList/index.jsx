@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from "./index.module.css";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {
   List,
   ListItem,
@@ -15,7 +16,24 @@ import {
 } from '@mui/icons-material';
 import dayjs from "dayjs";
 
-export default function ItemList({ list, del, toggleDone }) {
+
+// 重新记录数组顺序
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+};
+
+// 设置样式
+const getItemStyle = (isDragging, draggableStyle) => (
+  {
+    background: isDragging ? "lightgreen" : "#ffffff",
+    ...draggableStyle,
+  }
+);
+
+export default function ItemList({ list, del, toggleDone, changeList }) {
   const ul = useRef();
   const [showTip, setShowTip] = useState(false);
   useEffect(() => {
@@ -26,30 +44,70 @@ export default function ItemList({ list, del, toggleDone }) {
     setShowTip(true);
     setTimeout(() => setShowTip(false), 1000);
   }
+
+  /* 可拖拽配置 */
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const items = reorder(
+      list,
+      result.source.index,
+      result.destination.index
+    );
+
+    changeList(items);
+  }
   return (
     <>
       <List dense ref={ul} className={styles.list}>
-        {
-          list.map(item => (
-            <ListItem
-              key={item.id}
-              divider
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
-                  <DeleteIcon color='error' />
-                </IconButton>
-              }
-              className={`${styles.item} ${item.done ? styles.done : ""}`}
-            >
-              <Checkbox className={item.done ? styles.done : ""} checked={!!item.done} onChange={() => toggleDone(item.id)} />
-              <ListItemText
-                primary={ <span onClick={copy(item.val)}>{item.val}</span> }
-                secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
-                className={styles.text}
-              />
-            </ListItem>
-          )
-          )}
+
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {
+                    list.map((item, index) => (
+                      <Draggable key={item.id} draggableId={item.id} index={index}>
+                        {(provided, snapshot) => (
+                          <ListItem
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            key={item.id}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                            divider
+                            secondaryAction={
+                              <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
+                                <DeleteIcon color='error' />
+                              </IconButton>
+                            }
+                            className={`${styles.item} ${item.done ? styles.done : ""}`}
+                          >
+                            <Checkbox className={item.done ? styles.done : ""} checked={!!item.done} onChange={() => toggleDone(item.id)} />
+                            <ListItemText
+                              primary={<span onClick={copy(item.val)}>{item.val}</span>}
+                              secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
+                              className={styles.text}
+                            />
+                          </ListItem>
+                        )}
+                      </Draggable>
+                    ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </div>
+        </DragDropContext>
       </List>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}

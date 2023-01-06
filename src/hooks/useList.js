@@ -55,6 +55,7 @@ const useList = () => {
     toggleDone,
     del,
     modify,
+    changeList,
   }
 }
 
