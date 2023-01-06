@@ -44,7 +44,7 @@
   padding-top: 0 !important;
 }
 
-.active {
+/* .active {
   animation: enter .4s linear 0s forwards;
 }
 
@@ -60,4 +60,4 @@
   100% {
     transform: scale(1);
   }
-}
+} */

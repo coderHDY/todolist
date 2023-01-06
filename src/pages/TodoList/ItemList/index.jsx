@@ -41,9 +41,6 @@ const getItemStyle = (isDragging, draggableStyle, y) => (isDragging ?
 export default function ItemList({ list, del, toggleDone, changeList }) {
   const ul = useRef();
   const [showTip, setShowTip] = useState(false);
-  useEffect(() => {
-    Array.prototype.forEach.call(ul.current.children, (item, idx) => setTimeout(() => item.classList.add(styles.active), idx * 40));
-  }, []);
   const copy = (val) => () => {
     navigator.clipboard.writeText(val);
     setShowTip(true);
