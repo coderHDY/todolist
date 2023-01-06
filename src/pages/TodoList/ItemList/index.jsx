@@ -26,7 +26,12 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 // 设置样式
-const getItemStyle = (isDragging, draggableStyle) => (
+const getItemStyle = (isDragging, draggableStyle, y) => (isDragging ?
+  {
+    background: isDragging ? "lightgreen" : "#ffffff",
+    ...draggableStyle,
+    top: `${draggableStyle.top} !important`,
+  } :
   {
     background: isDragging ? "lightgreen" : "#ffffff",
     ...draggableStyle,
@@ -82,7 +87,7 @@ export default function ItemList({ list, del, toggleDone, changeList }) {
                             key={item.id}
                             style={getItemStyle(
                               snapshot.isDragging,
-                              provided.draggableProps.style
+                              provided.draggableProps.style,
                             )}
                             divider
                             secondaryAction={
