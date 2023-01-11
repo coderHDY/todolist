@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from "./index.module.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {

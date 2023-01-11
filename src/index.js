@@ -1,12 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
 import "./index.css";
+import { AliveScope } from 'react-activation'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render((
   <HashRouter>
-    <App />
+    <AliveScope>
+      <App />
+    </AliveScope>
   </HashRouter>
-);
+), document.getElementById('root'))
