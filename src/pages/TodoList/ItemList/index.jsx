@@ -26,17 +26,10 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 // 设置样式
-const getItemStyle = (isDragging, draggableStyle, y) => (isDragging ?
-  {
-    background: isDragging ? "lightgreen" : "#ffffff",
-    ...draggableStyle,
-    top: `${draggableStyle.top} !important`,
-  } :
-  {
-    background: isDragging ? "lightgreen" : "#ffffff",
-    ...draggableStyle,
-  }
-);
+const getItemStyle = (isDragging, draggableStyle, y) => ({
+  background: isDragging ? "lightgreen" : "#ffffff",
+  ...draggableStyle,
+});
 
 export default function ItemList({ list, del, toggleDone, changeList }) {
   const ul = useRef();
@@ -69,43 +62,43 @@ export default function ItemList({ list, del, toggleDone, changeList }) {
           <div>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
-                <div
+                  <div
                   {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {
-                    list.map((item, index) => (
-                      <Draggable key={item.id} draggableId={item.id} index={index}>
-                        {(provided, snapshot) => (
-                          <ListItem
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            key={item.id}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style,
-                            )}
-                            divider
-                            secondaryAction={
-                              <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
-                                <DeleteIcon color='error' />
-                              </IconButton>
-                            }
-                            className={`${styles.item} ${item.done ? styles.done : ""}`}
-                          >
-                            <Checkbox className={item.done ? styles.done : ""} checked={!!item.done} onChange={() => toggleDone(item.id)} />
-                            <ListItemText
-                              primary={<span onClick={copy(item.val)}>{item.val}</span>}
-                              secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
-                              className={styles.text}
-                            />
-                          </ListItem>
-                        )}
-                      </Draggable>
-                    ))}
-                  {provided.placeholder}
-                </div>
+                    ref={provided.innerRef}
+                  >
+                    {
+                      list.map((item, index) => (
+                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {(provided, snapshot) => (
+                              <ListItem
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                key={item.id}
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.draggableProps.style,
+                                )}
+                                divider
+                                secondaryAction={
+                                  <IconButton edge="end" aria-label="delete" onClick={() => del(item.id)}>
+                                    <DeleteIcon color='error' />
+                                  </IconButton>
+                                }
+                                className={`${styles.item} ${item.done ? styles.done : ""}`}
+                              >
+                                <Checkbox className={item.done ? styles.done : ""} checked={!!item.done} onChange={() => toggleDone(item.id)} />
+                                <ListItemText
+                                  primary={<span onClick={copy(item.val)}>{item.val}</span>}
+                                  secondary={item.deadline && `时间: ${dayjs(new Date(item.deadline)).format("YYYY-MM-DD HH:mm")}`}
+                                  className={styles.text}
+                                />
+                              </ListItem>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
               )}
             </Droppable>
           </div>
