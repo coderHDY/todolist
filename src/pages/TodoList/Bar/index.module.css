@@ -1,0 +1,47 @@
+.quotes {
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;
+}
+
+.quote {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 5rem;
+  width: 100%;
+  padding-top: .3rem;
+  padding-right: 2.8rem;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.active {
+  animation: quote 10s linear 1 forwards;
+}
+
+.one-line {
+  line-height: 3rem !important;
+}
+
+@keyframes quote {
+  0% {
+    top: 3rem;
+  }
+
+  2% {
+    top: 0rem;
+  }
+
+  98% {
+    top: 0rem;
+  }
+
+  100% {
+    top: -3rem;
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   IconButton,
   AppBar,
@@ -9,10 +9,10 @@ import {
   SpeedDial,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import styles from "./index.module.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import ReplayIcon from '@mui/icons-material/Replay';
-
+import useQuotes from "./useQuotes";
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: 'absolute',
   '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
@@ -32,18 +32,56 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
   },
 }));
 
+// 滚动名人名言
+const Quotes = memo(() => {
+  const [showIdx, setShowIdx] = useState(0);
+  const { quotes } = useQuotes();
+  const isOnlyOneLine = (val) => val.length <= 14 && !val.includes("<br");
 
-const Index = () => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowIdx(i => i < quotes.length - 1 ? i + 1 : 0);
+    }, 10000);
+    return () => {
+      clearTimeout(interval);
+    };
+  }, []);
+  return (
+    <div className={styles.quotes}>
+      {
+        quotes.map((item, i) =>
+          <div
+            key={i}
+            className={`
+              ${styles.quote}
+              ${showIdx === i ? styles.active : ''}
+              ${isOnlyOneLine(item) ? styles["one-line"] : ""}
+            `}
+            dangerouslySetInnerHTML={{ __html: item }}
+          ></div>
+        )
+      }
+    </div>
+  );
+});
+
+
+const TopBar = () => {
+
+  // 右上下拉操作列表
   const actions = [
     { icon: <ReplayIcon />, name: 'Reload', onClick: () => window.location.reload() },
   ];
+
   return (
     <AppBar position="fixed" color="primary" sx={{ top: 0 }}>
       <Toolbar>
         <IconButton color="inherit" aria-label="open drawer">
           <MenuIcon />
         </IconButton>
-        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ flexGrow: 1 }}>
+          <Quotes />
+        </Box>
         <StyledSpeedDial
           ariaLabel="SpeedDial playground example"
           icon={<SpeedDialIcon />}
@@ -63,4 +101,4 @@ const Index = () => {
   );
 }
 
-export default Index;
+export default TopBar;
