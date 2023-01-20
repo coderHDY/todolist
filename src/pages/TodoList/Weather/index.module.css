@@ -17,9 +17,6 @@
 
 .container * {
   user-select: none;
-}
-
-.container * {
   color: #fff;
 }
 

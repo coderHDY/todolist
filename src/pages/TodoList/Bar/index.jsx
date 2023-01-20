@@ -45,7 +45,7 @@ const Quotes = memo(() => {
     return () => {
       clearTimeout(interval);
     };
-  }, []);
+  }, [quotes.length]);
   return (
     <div className={styles.quotes}>
       {
