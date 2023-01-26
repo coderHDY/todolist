@@ -27,6 +27,7 @@ const defaultQuote = [
   `比起向阳而生 <br /> 我更愿意尝试逆风翻盘`,
   `不要被20%的KPI <br /> 限制了100%的创造力`,
   `保留更多可能性 <br /> 为创新留下空间`,
+  `婚姻外喜欢是天性 <br /> 婚姻里忠诚是选择`,
 ]
 
 const randomSort = arr => arr.sort(() => Math.random() - 0.5);
