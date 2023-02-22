@@ -1,5 +1,5 @@
 .container {
-  position: fixed;
+  position: relative;
   top: 0;
   height: calc(100vh - 56px) !important;
   padding-left: 0px !important;
