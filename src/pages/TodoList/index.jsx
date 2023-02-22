@@ -25,7 +25,7 @@ export default function TodoList() {
     <Container className={`${styles.container} ${hide ? styles.hide : ""}`}>
       <Bar />
       <Weather hide={hide} setHide={setHide} />
-      <div onClick={() => setHide(true)} onTouchStart={() => setHide(true)} style={{overscrollBehavior: "none"}}>
+      <div onClick={() => setHide(true)} onTouchStart={() => setHide(true)}>
         <ItemList changeList={changeList} list={list} del={del} toggleDone={toggleDone} />
       </div>
       <Fab color="primary" onClick={() => setShowAdd(true)} className={styles.fabIcon}>

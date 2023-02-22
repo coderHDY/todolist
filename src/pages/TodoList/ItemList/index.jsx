@@ -56,7 +56,7 @@ export default function ItemList({ list, del, toggleDone, changeList }) {
   }
   return (
     <>
-      <List dense ref={ul} className={styles.list}>
+      <List dense ref={ul} className={styles.list}  style={{overscrollBehavior: "none"}}>
 
         <DragDropContext onDragEnd={onDragEnd}>
           <div>
