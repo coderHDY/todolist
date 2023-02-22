@@ -8,9 +8,14 @@
   background: linear-gradient(to bottom, #1876D1 0, #1876D1 5rem, var(--gray-bgc) 5rem);
   overflow-x: hidden;
   transition: .4s;
+  overscroll-behavior: none;
 }
 .container::-webkit-scrollbar {
   display: none
+}
+.list-container {
+  position: relative;
+  top: 0;
 }
 .fabIcon {
   position: fixed !important;
