@@ -1,7 +1,11 @@
 .container {
+  position: fixed;
+  top: 0;
+
   background-color: var(--gray-bgc);
   height: calc(100vh - 56px) !important;
   background-image: var(--bg-img);
   background-size: cover;
   padding-top: 44px;
+  /* overflow: hidden; */
 }

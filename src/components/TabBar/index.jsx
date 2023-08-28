@@ -23,6 +23,9 @@ export default function TabBar() {
   const [active, setActive] = useState(routes[0].link);
   const nav = useNavigate();
   const handleRouterClick = (item) => {
+    if (item.link === active) {
+      return;
+    }
     setActive(item.link);
     nav(item.link, { replace: true });
   };
