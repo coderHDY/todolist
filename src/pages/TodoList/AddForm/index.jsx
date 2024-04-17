@@ -29,7 +29,7 @@ export default function AddForm({ add, showAdd, setShowAdd }) {
       <Stack spacing={3} padding={2}>
 
         <TextField label="事件" autoFocus variant="standard" fullWidth value={name} onChange={e => setName(e.target.value)} />
-        <LocalizationProvider adapterLocale={bgLocale} dateAdapter={AdapterDayjs}>
+        {/* <LocalizationProvider adapterLocale={bgLocale} dateAdapter={AdapterDayjs}>
           <DateTimePicker
             displayStaticWrapperAs="mobile"
             label="截止日期"
@@ -37,7 +37,7 @@ export default function AddForm({ add, showAdd, setShowAdd }) {
             onChange={handleDateChange}
             renderInput={(params) => <TextField {...params} />}
           />
-        </LocalizationProvider>
+        </LocalizationProvider> */}
         <Button variant="contained" onClick={addList}>
           <AddIcon />
           <span>添加</span>
