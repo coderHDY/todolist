@@ -19,6 +19,8 @@ jobs:
 
       # 打包构建
       - name: Build
+        env:
+          DISABLE_ESLINT_PLUGIN: 'true'
         uses: actions/setup-node@master
         with:
           node-version: "18.8.0"
