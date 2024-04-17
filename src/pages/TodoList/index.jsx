@@ -20,8 +20,11 @@ export default function TodoList() {
   };
   const handleModifyOk = (val) => {
     modify(modifyItem.id, val);
-    setModifyItem(undefined);
+    closeDrawer();
+  };
+  const closeDrawer = () => {
     setShowAdd(false);
+    setModifyItem(undefined);
   };
 
   return (
@@ -51,7 +54,7 @@ export default function TodoList() {
       <SwipeableDrawer
         anchor="bottom"
         open={showAdd}
-        onClose={() => setShowAdd(false)}
+        onClose={closeDrawer}
         onOpen={() => setShowAdd(true)}
         className={styles.bottomDrawer}
       >
