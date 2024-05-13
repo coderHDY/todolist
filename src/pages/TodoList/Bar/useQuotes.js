@@ -35,6 +35,7 @@ const defaultQuote = [
   `自律的根源是迎难而上的能力和无视情绪的能力`,
   `过度敏感是弱者的表现`,
   `工资是自己的 <br/> 那么成长也是自己的事情`,
+  `很多人觉得自己活得太累 <br/> 实际上他们只是睡的太少`,
 ]
 
 const randomSort = arr => arr.sort(() => Math.random() - 0.5);
