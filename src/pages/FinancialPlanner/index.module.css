@@ -1,0 +1,17 @@
+.container {
+  position: fixed;
+  top: 0;
+  background-color: var(--gray-bgc);
+  height: calc(100vh - 66px) !important;
+  background-size: cover;
+  padding-top: 56px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  padding: 0;
+  height: 100%;
+  overflow: scroll;
+}
