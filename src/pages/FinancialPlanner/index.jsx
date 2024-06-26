@@ -148,9 +148,6 @@ export default function FinancialPlanner() {
     changeList(newList);
     closeDrawer();
   };
-  const isValidateNumber = (val) => {
-    return typeof val === "number" && !isNaN(val);
-  };
   return (
     <>
       <Container maxWidth="sm" className={styles.container}>
@@ -200,9 +197,7 @@ export default function FinancialPlanner() {
                                     <span
                                       className={isIn ? styles.in : styles.out}
                                     >{`${isIn ? "+" : "-"}${
-                                      isValidateNumber(item.amount)
-                                        ? item.amount
-                                        : 0
+                                      item.amount
                                     }`}</span>
                                   }
                                   className={styles.text}
