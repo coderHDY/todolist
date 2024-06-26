@@ -33,6 +33,7 @@ export default function ItemList({
   changeList,
   handleModify,
 }) {
+  console.log(list);
   const ul = useRef();
 
   /* 可拖拽配置 */

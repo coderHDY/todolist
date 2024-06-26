@@ -4,7 +4,6 @@ import styles from "./index.module.css";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
-import PersonIcon from "@mui/icons-material/Person";
 import SavingsIcon from "@mui/icons-material/Savings";
 
 const routes = [
@@ -26,7 +25,10 @@ const routes = [
 ];
 
 export default function TabBar() {
-  const [active, setActive] = useState(routes[0].link);
+  const currRoute = window.location.hash.split("#")[1] || "/";
+  const [active, setActive] = useState(
+    routes.find((item) => item.link === currRoute)?.link || "/"
+  );
   const nav = useNavigate();
   const handleRouterClick = (item) => {
     if (item.link === active) {
