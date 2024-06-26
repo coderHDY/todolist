@@ -29,14 +29,6 @@
   word-break: break-all;
 }
 
-.text span {
-  color: rgb(0, 0, 0, 0.6);
-  font-size: 1.5rem;
-  letter-spacing: .05rem !important;
-  font-weight: 900;
-  user-select: none;
-}
-
 .event {
   display: block;
   color: rgba(85, 85, 85, 0.6);
@@ -68,10 +60,12 @@
 }
 
 .in {
+  font-size: 14px;
   color: red
 }
 
 .out {
+  font-size: 14px;
   color: green
 }
 

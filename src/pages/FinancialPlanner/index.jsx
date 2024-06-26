@@ -148,6 +148,9 @@ export default function FinancialPlanner() {
     changeList(newList);
     closeDrawer();
   };
+  const isValidateNumber = (val) => {
+    return typeof val === "number" && !isNaN(val);
+  };
   return (
     <>
       <Container maxWidth="sm" className={styles.container}>
@@ -194,9 +197,13 @@ export default function FinancialPlanner() {
                                     </span>
                                   }
                                   secondary={
-                                    <div
+                                    <span
                                       className={isIn ? styles.in : styles.out}
-                                    >{`${isIn ? "+" : "-"}${item.amount}`}</div>
+                                    >{`${isIn ? "+" : "-"}${
+                                      isValidateNumber(item.amount)
+                                        ? item.amount
+                                        : 0
+                                    }`}</span>
                                   }
                                   className={styles.text}
                                 />
@@ -217,8 +224,8 @@ export default function FinancialPlanner() {
         <Fab
           color="primary"
           onClick={() => {
-            setMode("add")
-            setOpenModal(true)
+            setMode("add");
+            setOpenModal(true);
           }}
           className={styles.fabIcon}
         >
@@ -234,7 +241,7 @@ export default function FinancialPlanner() {
           className={styles.bottomDrawer}
         >
           <List dense className={openModal ? styles.jump : ""}>
-            <Stack spacing={4} paddingX={2} paddingBottom={5} paddingTop={2}>
+            <Stack spacing={2} paddingX={2} paddingBottom={3} paddingTop={2}>
               <RadioGroup
                 row
                 value={editItem.type}
@@ -271,7 +278,11 @@ export default function FinancialPlanner() {
                   <Button variant="contained" onClick={onModifyEventOk}>
                     <span>确认</span>
                   </Button>
-                  <Button color="error" variant="contained" onClick={() => del(editItem.id)}>
+                  <Button
+                    color="error"
+                    variant="contained"
+                    onClick={() => del(editItem.id)}
+                  >
                     <span>删除</span>
                   </Button>
                 </>
