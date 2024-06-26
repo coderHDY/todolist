@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: "18.8.0"
         uses: actions/setup-node@master
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - run: npm run build
       # - run: echo 'coderhdy.com' > ./docs/.vuepress/dist/CNAME # 自定义域名
 
