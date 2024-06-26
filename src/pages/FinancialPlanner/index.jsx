@@ -216,7 +216,10 @@ export default function FinancialPlanner() {
 
         <Fab
           color="primary"
-          onClick={() => setOpenModal(true)}
+          onClick={() => {
+            setMode("add")
+            setOpenModal(true)
+          }}
           className={styles.fabIcon}
         >
           <AddIcon />
