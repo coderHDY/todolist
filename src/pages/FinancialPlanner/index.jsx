@@ -60,7 +60,13 @@ export default function FinancialPlanner() {
         },
         {
           id: v4(),
-          event: "五月工资",
+          event: "五月剩余",
+          amount: 6000,
+          type: "in",
+        },
+        {
+          id: v4(),
+          event: "9月奖金",
           amount: 8000,
           type: "in",
         },
@@ -175,7 +181,6 @@ export default function FinancialPlanner() {
                                 divider
                                 secondaryAction={
                                   <ListItemText
-                                    // primary={<span>{item.event}</span>}
                                     secondary={item.total}
                                     className={styles.text}
                                   />
@@ -243,7 +248,6 @@ export default function FinancialPlanner() {
               <TextField
                 id="event_name"
                 label="事件"
-                autoFocus
                 variant="standard"
                 fullWidth
                 value={editItem.event}
