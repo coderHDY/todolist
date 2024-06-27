@@ -14,12 +14,14 @@
   border-spacing: 0;
   padding: 0;
   height: 100%;
+  background-color: white;
   overflow: scroll;
 }
 
 .list {
   width: 100vw;
   overflow: hidden;
+  padding-bottom: 80px !important;
 }
 
 .text {
