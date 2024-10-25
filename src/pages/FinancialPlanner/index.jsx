@@ -18,8 +18,9 @@ import {
   Radio,
 } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
-import { FINANCIAL } from "../../utils/constant";
+import { FINANCIAL, FINANCIAL_POSITION } from "../../utils/constant";
 import Storage from "../../utils/storage";
+import { useScrollPersistent } from "../../hooks/useScrollPersistent";
 
 // 重新记录数组顺序
 const reorder = (list, startIndex, endIndex) => {
@@ -152,11 +153,15 @@ export default function FinancialPlanner() {
     changeList(newList);
     closeDrawer();
   };
+
+  // 滚动
+  const scrollElRef = useRef();
+  useScrollPersistent(scrollElRef, FINANCIAL_POSITION);
   return (
     <>
       <Container maxWidth="sm" className={styles.container}>
         <TopBar center={"理财"} />
-        <div className={styles.table}>
+        <div className={styles.table} ref={scrollElRef}>
           <List dense ref={ul} className={styles.list}>
             <DragDropContext onDragEnd={onDragEnd}>
               <div>
