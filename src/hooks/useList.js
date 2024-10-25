@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Storage from "../utils/storage";
 import { v4 } from "uuid";
+import { LIST } from "../utils/constant";
 
-const LIST = "list";
 
 const useList = () => {
-  const [list, setList] = useState(Storage.get(LIST) || []);
-  const changeList = newList => {
+  const [list, setList] = useState([]);
+  const initList = async () => {
+    const list = await Storage.get(LIST);
+    if (list) {
+      setList(list);
+    }
+  };
+  useEffect(() => {
+    initList();
+  }, []);
+  const changeList = (newList) => {
     setList(newList);
     Storage.set(LIST, newList);
-  }
+  };
   const add = (str, deadline = "") => {
     if (str.trim() === "") return;
     const newItem = {
@@ -19,15 +28,15 @@ const useList = () => {
       deadline,
       top: -1,
       done: false,
-    }
+    };
     changeList([newItem, ...list]);
-  }
-  const toggleDone = id => {
+  };
+  const toggleDone = (id) => {
     let idx;
     const newList = list.map((item, i) => {
       if (item.id === id) {
         idx = i;
-        const newItem = { ...item, done: !item.done }
+        const newItem = { ...item, done: !item.done };
         return newItem;
       } else {
         return item;
@@ -41,13 +50,15 @@ const useList = () => {
     }
     changeList(newList);
   };
-  const del = id => {
-    const newList = list.filter(item => item.id !== id);
+  const del = (id) => {
+    const newList = list.filter((item) => item.id !== id);
     changeList(newList);
   };
   const modify = (id, val) => {
-    const newList = list.map(item => item.id === id ? { ...item, val } : item)
-    changeList(newList)
+    const newList = list.map((item) =>
+      item.id === id ? { ...item, val } : item
+    );
+    changeList(newList);
   };
   return {
     list,
@@ -56,7 +67,7 @@ const useList = () => {
     del,
     modify,
     changeList,
-  }
-}
+  };
+};
 
 export default useList;

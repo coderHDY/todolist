@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./index.module.css";
 import { Container } from "@mui/material";
 import TopBar from "../../components/TopBar";
@@ -17,8 +17,9 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import Storage from "../../utils/storage";
 import { Add as AddIcon } from "@mui/icons-material";
+import { FINANCIAL } from "../../utils/constant";
+import Storage from "../../utils/storage";
 
 // 重新记录数组顺序
 const reorder = (list, startIndex, endIndex) => {
@@ -33,7 +34,7 @@ const getItemStyle = (isDragging, draggableStyle, y) => ({
   background: isDragging ? "lightgreen" : "#ffffff",
   ...draggableStyle,
 });
-const FINANCIAL = "financial";
+
 const formatFinancialList = (list) => {
   let total = 0;
   const newList = list.map((item) => {
@@ -49,30 +50,33 @@ const formatFinancialList = (list) => {
 
 export default function FinancialPlanner() {
   const ul = useRef();
-  const [list, setList] = useState(
-    formatFinancialList(
-      Storage.get(FINANCIAL) || [
-        {
-          id: v4(),
-          event: "当前存款",
-          amount: 1000,
-          type: "in",
-        },
-        {
-          id: v4(),
-          event: "五月剩余",
-          amount: 6000,
-          type: "in",
-        },
-        {
-          id: v4(),
-          event: "9月奖金",
-          amount: 8000,
-          type: "in",
-        },
-      ]
-    )
-  );
+  const [list, setList] = useState([]);
+  const initList = async () => {
+    const financialList = (await Storage.get(FINANCIAL)) || [
+      {
+        id: v4(),
+        event: "当前存款",
+        amount: 1000,
+        type: "in",
+      },
+      {
+        id: v4(),
+        event: "五月剩余",
+        amount: 6000,
+        type: "in",
+      },
+      {
+        id: v4(),
+        event: "9月奖金",
+        amount: 8000,
+        type: "in",
+      },
+    ];
+    setList(formatFinancialList(financialList));
+  };
+  useEffect(() => {
+    initList();
+  }, []);
 
   const changeList = (items) => {
     Storage.set(FINANCIAL, items);

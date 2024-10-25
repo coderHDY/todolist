@@ -1,14 +1,19 @@
+import localforage from "localforage";
 export default class Storage {
-  static get(key) {
+  static async get(key = "") {
     let item;
     try {
-      item = JSON.parse(localStorage.getItem(key)) || "";
+      item = await localforage.getItem(key);
     } catch (e) {
       item = null;
     }
     return item;
   }
-  static set(key, val) {
-    localStorage.setItem(key, JSON.stringify(val));
+  static async set(key, val) {
+    try {
+      await localforage.setItem(key, val);
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
