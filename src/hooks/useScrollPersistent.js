@@ -8,7 +8,7 @@ export const useScrollPersistent = (elRef, key) => {
       clearTimeout(debounceRef.current);
     }
     debounceRef.current = setTimeout(() => {
-      Storage.set(key, elRef.current.scrollTop);
+      void Storage.set(key, elRef.current.scrollTop);
     }, 300);
   };
   const setScrollPosition = async () => {
@@ -22,7 +22,7 @@ export const useScrollPersistent = (elRef, key) => {
   };
 
   useEffect(() => {
-    setScrollPosition();
+    void setScrollPosition();
     elRef.current.addEventListener("scroll", savePosition);
     return () => {
       elRef.current?.removeEventListener("scroll", savePosition);

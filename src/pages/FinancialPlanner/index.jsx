@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import styles from "./index.module.css";
 import { Container } from "@mui/material";
-import TopBar from "../../components/TopBar";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { v4 } from "uuid";
 import {
@@ -18,9 +16,11 @@ import {
   Radio,
 } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
+import TopBar from "../../components/TopBar";
 import { FINANCIAL, FINANCIAL_POSITION } from "../../utils/constant";
 import Storage from "../../utils/storage";
 import { useScrollPersistent } from "../../hooks/useScrollPersistent";
+import styles from "./index.module.css";
 
 // 重新记录数组顺序
 const reorder = (list, startIndex, endIndex) => {
@@ -76,11 +76,11 @@ export default function FinancialPlanner() {
     setList(formatFinancialList(financialList));
   };
   useEffect(() => {
-    initList();
+    void initList();
   }, []);
 
   const changeList = (items) => {
-    Storage.set(FINANCIAL, items);
+    void Storage.set(FINANCIAL, items);
     setList(formatFinancialList(items));
   };
   const handleModify = (item) => {

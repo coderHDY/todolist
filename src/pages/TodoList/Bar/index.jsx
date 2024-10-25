@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo } from "react";
 import {
   IconButton,
   AppBar,
@@ -7,25 +7,25 @@ import {
   SpeedDialIcon,
   SpeedDialAction,
   SpeedDial,
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
+import ReplayIcon from "@mui/icons-material/Replay";
 import styles from "./index.module.css";
-import MenuIcon from '@mui/icons-material/Menu';
-import ReplayIcon from '@mui/icons-material/Replay';
 import useQuotes from "./useQuotes";
 const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
-  position: 'absolute',
-  '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+  position: "absolute",
+  "&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft": {
     bottom: theme.spacing(-3),
     right: theme.spacing(-1.2),
     transform: "scale(.9)",
   },
-  '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+  "&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight": {
     top: "-5px",
     right: ".3rem",
     transform: "scale(.9)",
   },
-  '& button': {
+  "& button": {
     boxShadow: "none !important",
     backgroundColor: "#1876D1",
     color: "#ffffff",
@@ -33,6 +33,7 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
 }));
 
 // 滚动名人名言
+// eslint-disable-next-line react/display-name
 const Quotes = memo(() => {
   const [showIdx, setShowIdx] = useState(0);
   const { quotes } = useQuotes();
@@ -40,7 +41,7 @@ const Quotes = memo(() => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowIdx(i => i < quotes.length - 1 ? i + 1 : 0);
+      setShowIdx((i) => (i < quotes.length - 1 ? i + 1 : 0));
     }, 10000);
     return () => {
       clearTimeout(interval);
@@ -48,29 +49,29 @@ const Quotes = memo(() => {
   }, [quotes.length]);
   return (
     <div className={styles.quotes}>
-      {
-        quotes.map((item, i) =>
-          <div
-            key={i}
-            className={`
+      {quotes.map((item, i) => (
+        <div
+          key={i}
+          className={`
               ${styles.quote}
-              ${showIdx === i ? styles.active : ''}
+              ${showIdx === i ? styles.active : ""}
               ${isOnlyOneLine(item) ? styles["one-line"] : ""}
             `}
-            dangerouslySetInnerHTML={{ __html: item }}
-          ></div>
-        )
-      }
+          dangerouslySetInnerHTML={{ __html: item }}
+        ></div>
+      ))}
     </div>
   );
 });
 
-
 const TopBar = () => {
-
   // 右上下拉操作列表
   const actions = [
-    { icon: <ReplayIcon />, name: 'Reload', onClick: () => window.location.reload() },
+    {
+      icon: <ReplayIcon />,
+      name: "Reload",
+      onClick: () => window.location.reload(),
+    },
   ];
 
   return (
@@ -99,6 +100,6 @@ const TopBar = () => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default TopBar;

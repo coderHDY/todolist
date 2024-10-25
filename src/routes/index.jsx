@@ -1,9 +1,10 @@
-import Me from "../pages/Me";
-import TodoList from "../pages/TodoList";
-import Err from "../pages/Error/index.jsx";
+import React from "react";
 import KeepAlive from "react-activation";
 import { Navigate } from "react-router-dom";
 import FinancialPlanner from "../pages/FinancialPlanner/index.jsx";
+import Me from "../pages/Me/index.jsx";
+import TodoList from "../pages/TodoList/index.jsx";
+import Err from "../pages/Error/index.jsx";
 
 const routerMap = [
   {
@@ -25,7 +26,7 @@ const routerMap = [
   {
     path: "/financialPlanner",
     element: (
-      <KeepAlive cacheKey="todoList">
+      <KeepAlive cacheKey="financialPlanner">
         <FinancialPlanner />
       </KeepAlive>
     ),

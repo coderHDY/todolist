@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './index.module.css';
-import { Container } from '@mui/material';
+import React from "react";
+import { Container } from "@mui/material";
 import TopBar from "../../components/TopBar";
+import styles from "./index.module.css";
 
 export default function Home() {
   return (
@@ -10,5 +10,5 @@ export default function Home() {
         <TopBar center={"我的"} />
       </Container>
     </>
-  )
+  );
 }

@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import styles from "./index.module.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {
   List,
@@ -8,9 +7,9 @@ import {
   ListItemText,
   Checkbox,
 } from "@mui/material";
-
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import dayjs from "dayjs";
+import styles from "./index.module.css";
 
 // 重新记录数组顺序
 const reorder = (list, startIndex, endIndex) => {

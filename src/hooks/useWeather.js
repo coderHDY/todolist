@@ -9,9 +9,9 @@ const useWeather = () => {
     if (
       weather &&
       weather.date &&
-      new Date(weather.date).toDateString() === new Date().toDateString()
-      && weather.today !== undefined
-      && weather.later !== undefined
+      new Date(weather.date).toDateString() === new Date().toDateString() &&
+      weather.today !== undefined &&
+      weather.later !== undefined
     ) {
       setToday(weather.today ?? {});
       setLater(weather.later ?? []);
@@ -24,7 +24,7 @@ const useWeather = () => {
       window.AMap.plugin("AMap.Weather", function () {
         //创建天气查询实例
         let weatherAPI = new window.AMap.Weather();
-        Promise.all([
+        void Promise.all([
           new Promise((res) => {
             //执行实时天气信息查询
             weatherAPI.getLive("大连市", function (err, data) {
@@ -48,7 +48,7 @@ const useWeather = () => {
           }),
         ]).then(() => {
           weather.date = +new Date();
-          Storage.set("weather", weather);
+          void Storage.set("weather", weather);
         });
       });
     };

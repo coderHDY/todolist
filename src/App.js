@@ -11,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   useWeather();
   useEffect(() => {
-    migrate();
+    void migrate();
     setTimeout(() => setLoading(false), 1000);
   }, []);
   return (

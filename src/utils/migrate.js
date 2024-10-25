@@ -1,5 +1,5 @@
-import { LIST, FINANCIAL } from "./constant";
 import localforage from "localforage";
+import { LIST, FINANCIAL } from "./constant";
 
 // localStorage 迁移到localforage
 export const migrate = async () => {
@@ -14,7 +14,7 @@ export const migrate = async () => {
       }
     }
     if (item) {
-      localforage.setItem(key, item).then(() => {
+      void localforage.setItem(key, item).then(() => {
         localStorage.removeItem(key);
       });
     }

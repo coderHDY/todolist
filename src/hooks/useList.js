@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Storage from "../utils/storage";
 import { v4 } from "uuid";
+import Storage from "../utils/storage";
 import { LIST } from "../utils/constant";
-
 
 const useList = () => {
   const [list, setList] = useState([]);
@@ -13,11 +12,11 @@ const useList = () => {
     }
   };
   useEffect(() => {
-    initList();
+    void initList();
   }, []);
   const changeList = (newList) => {
     setList(newList);
-    Storage.set(LIST, newList);
+    void Storage.set(LIST, newList);
   };
   const add = (str, deadline = "") => {
     if (str.trim() === "") return;

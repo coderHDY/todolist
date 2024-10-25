@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./index.module.css";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import SavingsIcon from "@mui/icons-material/Savings";
+import styles from "./index.module.css";
 
 const routes = [
   {

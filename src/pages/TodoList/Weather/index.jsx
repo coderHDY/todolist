@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./index.module.css";
 import { Card, Box, Typography, CardContent } from "@mui/material";
 import useWeather from "../../../hooks/useWeather";
+import styles from "./index.module.css";
 
 const Weather = (props) => {
   const { hide, setHide } = props;

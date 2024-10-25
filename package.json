@@ -10,9 +10,6 @@
     "@mui/material": "^5.10.8",
     "@mui/x-data-grid": "^5.17.6",
     "@mui/x-date-pickers": "^5.0.4",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.5",
     "localforage": "^1.10.0",
@@ -21,10 +18,20 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
     "typescript": "^5.5.2",
-    "uuid": "^9.0.0",
-    "web-vitals": "^2.1.4"
+    "@types/react": "16.9.53",
+    "@types/react-dom": "16.9.8",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jest": "27.2.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.31.11",
+    "prettier": "2.8.1",
+    "react-scripts": "5.0.1",
+    "react-app-rewired": "2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

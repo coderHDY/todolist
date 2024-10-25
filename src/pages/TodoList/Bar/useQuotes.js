@@ -3,7 +3,7 @@ import { useState } from "react";
 /**
  * 长度24个字
  * iphone12 一行 14 个字
-*/
+ */
 const defaultQuote = [
   `成为一个专家要10000小时 <br /> 掌握一个东西只需要20小时`,
   `先做五分钟 <br /> 再说行不行`,
@@ -35,15 +35,15 @@ const defaultQuote = [
   `过度敏感是弱者的表现`,
   `工资是自己的 <br/> 那么成长也是自己的事情`,
   `很多人觉得自己活得太累 <br/> 实际上他们只是睡的太少`,
-]
+];
 
-const randomSort = arr => arr.sort(() => Math.random() - 0.5);
+const randomSort = (arr) => arr.sort(() => Math.random() - 0.5);
 
 const useQuotes = () => {
   // const [quotes, setQuotes] = useState(defaultQuote);
   const [quotes, setQuotes] = useState(randomSort(defaultQuote));
 
   return { quotes, setQuotes };
-}
+};
 
 export default useQuotes;
