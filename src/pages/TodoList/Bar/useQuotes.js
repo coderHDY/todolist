@@ -35,6 +35,7 @@ const defaultQuote = [
   `过度敏感是弱者的表现`,
   `工资是自己的 <br/> 那么成长也是自己的事情`,
   `很多人觉得自己活得太累 <br/> 实际上他们只是睡的太少`,
+  `人总是高估一天能做的事 <br/> 同时低估一年能做的事`,
 ];
 
 const randomSort = (arr) => arr.sort(() => Math.random() - 0.5);
