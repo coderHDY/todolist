@@ -16,6 +16,7 @@ export default function AddForm({
   const [deadline, setDeadline] = useState(new Date());
   const addList = () => {
     add(name, +deadline > +new Date() ? +deadline : "");
+    setName("");
     setShowAdd(false);
   };
 
